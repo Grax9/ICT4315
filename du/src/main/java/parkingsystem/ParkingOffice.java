@@ -3,6 +3,7 @@ package parkingsystem;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This class is responsible for ParkingOffice objects
@@ -23,7 +24,7 @@ public class ParkingOffice {
 
   /* Creates a new ParkingOffice object */
   public ParkingOffice(String name, String address, List<Customer> customers, List<Car> cars, List<ParkingLot> lots,
-      List<ParkingCharge> charges) {
+                       List<ParkingCharge> charges) {
     this.name = name;
     this.address = address;
     this.customers = customers;
@@ -113,6 +114,13 @@ public class ParkingOffice {
     return charge;
   }
 
+  public ParkingCharge park(ParkingEvent event) {
+    Car car = event.getPermit().getCar();
+    ParkingCharge charge = event.getParkingLot().entry(car, event.getTimeIn());
+    addCharge(charge);
+    return charge;
+  }
+
   public Money getParkingCharges(String permitID) {
     Money money = new Money();
     for (ParkingCharge charge : this.charges) {
@@ -128,7 +136,7 @@ public class ParkingOffice {
 
     for (String permitID : getPermitIDs(customer)) {
       for (ParkingCharge charge : this.charges) {
-        if (permitID == charge.getPermitID()) {
+        if (Objects.equals(permitID, charge.getPermitID())) {
           money.setCents(money.getCents() + charge.getAmount().getCents());
         }
       }

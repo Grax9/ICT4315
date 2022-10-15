@@ -1,11 +1,12 @@
 package parkingsystem;
 
-import java.util.Objects;
-
 import chargestrategy.ParkingChargeStrategy;
 
 import java.time.Instant;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * This class is responsible for ParkingLot objects
@@ -15,23 +16,25 @@ import java.time.OffsetDateTime;
  * @since July 11, 2021
  */
 
-public class ParkingLot {
+public class ParkingLot implements Subject {
   private String lotID;
   private String address;
   private Integer capacity;
   private Integer fee;
   private ScanType scanType;
   private ParkingChargeStrategy chargeStrategy;
+  private List<ParkingAction> observers;
 
   /* Creates a new ParkingLot object */
   public ParkingLot(String lotID, String address, Integer capacity, Integer fee, ScanType scanType,
-      ParkingChargeStrategy chargeStrategy) {
+                    ParkingChargeStrategy chargeStrategy) {
     this.lotID = lotID;
     this.address = address;
     this.capacity = capacity;
     this.fee = fee;
     this.scanType = scanType;
     this.chargeStrategy = chargeStrategy;
+    this.observers = new ArrayList<ParkingAction>();
   }
 
   /*
@@ -129,4 +132,20 @@ public class ParkingLot {
     return Objects.hash(lotID, address, capacity, fee, scanType);
   }
 
+  @Override
+  public void register(ParkingAction observer) {
+    observers.add(observer);
+  }
+
+  @Override
+  public void unregister(ParkingAction observer) {
+    observers.remove(observer);
+  }
+
+  @Override
+  public void notifyObservers(ParkingEvent event) {
+    for (ParkingAction observer : observers) {
+      observer.notify(event);
+    }
+  }
 }
