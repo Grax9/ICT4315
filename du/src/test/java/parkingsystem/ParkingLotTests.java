@@ -1,17 +1,14 @@
 package parkingsystem;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import chargestrategy.ChargeByTypeAndTimeStrategy;
+import chargestrategy.ParkingChargeStrategy;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 
-import org.junit.jupiter.api.Test;
-
-import chargestrategy.ChargeByTypeAndTimeStrategy;
-import chargestrategy.ParkingChargeStrategy;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit Tests for ParkingLot.java
@@ -54,6 +51,77 @@ public class ParkingLotTests {
     ParkingCharge charge2 = parkingLot.entry(car2, OffsetDateTime.now());
     assertEquals(charge2.getPermitID(), car2.getPermit());
     assertEquals("$0.80", charge2.getAmount().toString());
+  }
+
+  /**
+   * Test Register Observer
+   */
+  @Test
+  public void testRegister() {
+    ParkingOffice office = new ParkingOffice("test",
+        "test", new ArrayList<Customer>(), new ArrayList<Car>(),
+        new ArrayList<ParkingLot>(), new ArrayList<ParkingCharge>());
+    ParkingChargeStrategy chargeStrategy = new ChargeByTypeAndTimeStrategy();
+    ParkingLot parkingLot = new ParkingLot("Lot A", "123 Main St.", 0, 1, ScanType.ENTRY, chargeStrategy);
+
+    ParkingObserver observer = new ParkingObserver(office);
+
+    parkingLot.register(observer);
+
+    assertEquals(1, parkingLot.getObservers().size());
+  }
+
+  /**
+   * Test Unregister Observer
+   */
+  @Test
+  public void testUnregister() {
+    ParkingOffice office = new ParkingOffice("test",
+        "test", new ArrayList<Customer>(), new ArrayList<Car>(),
+        new ArrayList<ParkingLot>(), new ArrayList<ParkingCharge>());
+    ParkingChargeStrategy chargeStrategy = new ChargeByTypeAndTimeStrategy();
+    ParkingLot parkingLot = new ParkingLot("Lot A", "123 Main St.", 0, 1, ScanType.ENTRY, chargeStrategy);
+
+    ParkingObserver observer = new ParkingObserver(office);
+
+    parkingLot.register(observer);
+    assertEquals(1, parkingLot.getObservers().size());
+    parkingLot.unregister(observer);
+    assertEquals(0, parkingLot.getObservers().size());
+  }
+
+  /**
+   * Test notifyObservers
+   */
+  @Test
+  public void testNotifyObservers() {
+    ParkingOffice office = new ParkingOffice("test",
+        "test", new ArrayList<Customer>(), new ArrayList<Car>(),
+        new ArrayList<ParkingLot>(), new ArrayList<ParkingCharge>());
+
+    ParkingChargeStrategy chargeStrategy = new ChargeByTypeAndTimeStrategy();
+    ParkingLot parkingLot = new ParkingLot("Lot A", "123 Main St.", 0, 1, ScanType.ENTRY, chargeStrategy);
+    Customer customer = office.register("abcd", "123 Main St.", "1234567890");
+    Car car = customer.register("testLicense", CarType.SUV, office);
+    LocalDate time = LocalDate.now();
+    OffsetDateTime time2 = OffsetDateTime.now();
+
+    ParkingPermit permit = new ParkingPermit("testLicense", car, time);
+
+    ParkingEvent event = new ParkingEvent.Builder()
+        .withParkingLot(parkingLot)
+        .withPermit(permit)
+        .withTimeIn(time2)
+        .withTimeOut(time2)
+        .build();
+
+    ParkingObserver observer = new ParkingObserver(office);
+
+    parkingLot.register(observer);
+    parkingLot.notifyObservers(event);
+
+    Money charge = office.getParkingCharges(customer);
+    assertEquals(1, charge.getCents());
   }
 
   /**

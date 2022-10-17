@@ -59,6 +59,10 @@ public class ParkingLot implements Subject {
     this.chargeStrategy = chargeStrategy;
   }
 
+  public List<ParkingAction> getObservers() {
+    return this.observers;
+  }
+
   public String getLotID() {
     return this.lotID;
   }
