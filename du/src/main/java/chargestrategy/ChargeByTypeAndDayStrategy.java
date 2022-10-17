@@ -1,11 +1,11 @@
 package chargestrategy;
 
-import java.time.DayOfWeek;
-import java.time.OffsetDateTime;
-
 import parkingsystem.Car;
 import parkingsystem.CarType;
 import parkingsystem.Money;
+
+import java.time.DayOfWeek;
+import java.time.OffsetDateTime;
 
 public class ChargeByTypeAndDayStrategy implements ParkingChargeStrategy {
 
@@ -20,6 +20,7 @@ public class ChargeByTypeAndDayStrategy implements ParkingChargeStrategy {
     if (entryTime.getDayOfWeek() == DayOfWeek.SATURDAY || entryTime.getDayOfWeek() == DayOfWeek.SUNDAY) {
       // Free on Weekends
       rate.setCents(0);
+
     }
 
     return rate;
