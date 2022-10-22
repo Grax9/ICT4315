@@ -1,16 +1,16 @@
 package parkingsystem;
 
 /**
-* Tests for Money.java
-*
-* @author  Erik Grafton
-* @version 1.0
-* @since   July 25, 2021
-*/
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+ * Tests for Money.java
+ *
+ * @author Erik Grafton
+ * @version 1.0
+ * @since July 25, 2021
+ */
 
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MoneyTests {
   /**
@@ -40,6 +40,15 @@ public class MoneyTests {
     testMoney.setCents(3210);
     Money money = new Money(testMoney);
     assertEquals(3210, money.getCents());
+  }
+
+  /**
+   * Test Constructor w/ int input
+   */
+  @Test
+  public void testMoneyInt() {
+    Money money = new Money(1);
+    assertEquals(1, money.getCents());
   }
 
   /**

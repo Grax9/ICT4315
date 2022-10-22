@@ -25,6 +25,10 @@ public class Money {
     this.cents = (long) doubleValue;
   }
 
+  public Money(int cents) {
+    this.cents = cents;
+  }
+
   /* Creates a new Money object from another Money object */
   public Money(Money money) {
     this.cents = money.getCents();
