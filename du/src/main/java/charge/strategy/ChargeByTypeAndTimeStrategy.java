@@ -1,10 +1,10 @@
-package chargestrategy;
-
-import java.time.OffsetDateTime;
+package charge.strategy;
 
 import parkingsystem.Car;
 import parkingsystem.CarType;
 import parkingsystem.Money;
+
+import java.time.OffsetDateTime;
 
 public class ChargeByTypeAndTimeStrategy implements ParkingChargeStrategy {
 

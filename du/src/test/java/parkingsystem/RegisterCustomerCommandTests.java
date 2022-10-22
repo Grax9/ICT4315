@@ -14,8 +14,8 @@ import java.util.Properties;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import chargestrategy.ChargeByTypeAndTimeStrategy;
-import chargestrategy.ParkingChargeStrategy;
+import charge.strategy.ChargeByTypeAndTimeStrategy;
+import charge.strategy.ParkingChargeStrategy;
 
 /**
  * Unit Tests for RegisterCustomerCommand.java

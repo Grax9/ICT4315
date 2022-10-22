@@ -1,4 +1,4 @@
-package chargestrategy.factory;
+package charge.decorator.factory;
 
 /**
  * Tests for ParkingChargeCalculatorFactory.java
@@ -8,7 +8,7 @@ package chargestrategy.factory;
  * @since October 21, 2022
  */
 
-import chargestrategy.decorator.ParkingChargeCalculator;
+import charge.decorator.ParkingChargeCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import parkingsystem.*;

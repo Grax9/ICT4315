@@ -1,4 +1,4 @@
-package chargestrategy.decorator;
+package charge.decorator;
 
 /**
  * This class is the abstract decorator for the parking charge calculator

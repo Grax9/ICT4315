@@ -1,25 +1,24 @@
-package chargestrategy;
+package charge.strategy;
 
 /**
-* Tests for ChargeByTypeAndTime.java
-*
-* @author  Erik Grafton
-* @version 1.0
-* @since   October 02, 2022
-*/
+ * Tests for ChargeByTypeAndTime.java
+ *
+ * @author Erik Grafton
+ * @version 1.0
+ * @since October 02, 2022
+ */
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.Test;
+import parkingsystem.Car;
+import parkingsystem.CarType;
+import parkingsystem.Customer;
+import parkingsystem.Money;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
-import org.junit.Test;
-
-import parkingsystem.Car;
-import parkingsystem.CarType;
-import parkingsystem.Customer;
-import parkingsystem.Money;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ChargeByTypeAndTimeTests {
   /**

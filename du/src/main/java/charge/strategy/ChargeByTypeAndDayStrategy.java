@@ -1,4 +1,4 @@
-package chargestrategy;
+package charge.strategy;
 
 import parkingsystem.Car;
 import parkingsystem.CarType;

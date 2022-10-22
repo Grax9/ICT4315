@@ -1,4 +1,4 @@
-package chargestrategy.decorator;
+package charge.decorator;
 
 /**
  * This class is responsible for flat rate calculations

@@ -1,4 +1,4 @@
-package chargestrategy.factory;
+package charge.decorator.factory;
 
 /**
  * This class is responsible for creating ParkingChargeCalculator objects
@@ -8,7 +8,7 @@ package chargestrategy.factory;
  * @since October 21, 2022
  */
 
-import chargestrategy.decorator.*;
+import charge.decorator.*;
 
 import java.util.List;
 

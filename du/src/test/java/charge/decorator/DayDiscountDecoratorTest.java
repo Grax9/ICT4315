@@ -1,4 +1,4 @@
-package chargestrategy.decorator;
+package charge.decorator;
 
 /**
  * Tests for DayDiscountDecorator.java

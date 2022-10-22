@@ -1,12 +1,12 @@
 package parkingsystem;
 
 /**
-* Tests for ParkingOffice.java
-*
-* @author  Erik Grafton
-* @version 1.0
-* @since   July 25, 2021
-*/
+ * Tests for ParkingOffice.java
+ *
+ * @author Erik Grafton
+ * @version 1.0
+ * @since July 25, 2021
+ */
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,8 +21,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import chargestrategy.ChargeByTypeAndTimeStrategy;
-import chargestrategy.ParkingChargeStrategy;
+import charge.strategy.ChargeByTypeAndTimeStrategy;
+import charge.strategy.ParkingChargeStrategy;
 
 public class ParkingOfficeTests {
   private static List<Customer> customers;

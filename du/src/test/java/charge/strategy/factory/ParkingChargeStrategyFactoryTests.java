@@ -1,27 +1,26 @@
-package chargestrategy.factory;
+package charge.strategy.factory;
 
 /**
-* Tests for ParkingChargeStrategyFactoryTests.java
-*
-* @author  Erik Grafton
-* @version 1.0
-* @since   October 07, 2022
-*/
+ * Tests for ParkingChargeStrategyFactoryTests.java
+ *
+ * @author Erik Grafton
+ * @version 1.0
+ * @since October 07, 2022
+ */
 
-import static org.junit.Assert.assertEquals;
+import charge.strategy.ParkingChargeStrategy;
+import charge.strategy.factory.ParkingChargeStrategyFactory.ChargeStrategy;
+import org.junit.Test;
+import parkingsystem.Car;
+import parkingsystem.CarType;
+import parkingsystem.Customer;
+import parkingsystem.Money;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
-import org.junit.Test;
-
-import chargestrategy.ParkingChargeStrategy;
-import chargestrategy.factory.ParkingChargeStrategyFactory.ChargeStrategy;
-import parkingsystem.Car;
-import parkingsystem.CarType;
-import parkingsystem.Customer;
-import parkingsystem.Money;
+import static org.junit.Assert.assertEquals;
 
 public class ParkingChargeStrategyFactoryTests {
   /**

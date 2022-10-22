@@ -1,7 +1,7 @@
 package parkingsystem;
 
-import chargestrategy.ChargeByTypeAndTimeStrategy;
-import chargestrategy.ParkingChargeStrategy;
+import charge.strategy.ChargeByTypeAndTimeStrategy;
+import charge.strategy.ParkingChargeStrategy;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

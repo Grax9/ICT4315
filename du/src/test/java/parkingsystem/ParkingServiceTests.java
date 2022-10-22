@@ -15,8 +15,8 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import chargestrategy.ChargeByTypeAndTimeStrategy;
-import chargestrategy.ParkingChargeStrategy;
+import charge.strategy.ChargeByTypeAndTimeStrategy;
+import charge.strategy.ParkingChargeStrategy;
 
 /**
  * Unit Tests for ParkingService.java
@@ -82,8 +82,8 @@ public class ParkingServiceTests {
   @Test
   public void testValidCarCommand() throws Exception {
     ParkingService parkingService = new ParkingService(parkingOffice);
-    String[] params = { "name=Jimmy", "address=123 Main St", "phone=1234567890", "license=license2",
-        "carType=SUV" };
+    String[] params = {"name=Jimmy", "address=123 Main St", "phone=1234567890", "license=license2",
+        "carType=SUV"};
     String result = parkingService.performCommands("CAR", params);
     assertNotNull(result);
   }
@@ -92,7 +92,7 @@ public class ParkingServiceTests {
   public void testInvalidCarCommand() throws Exception {
     ParkingService parkingService = new ParkingService(parkingOffice);
     String[] params = {
-        "address=123 Main St", "phone=1234567890", "license=license2", "carType=SUV" };
+        "address=123 Main St", "phone=1234567890", "license=license2", "carType=SUV"};
     assertThrows(InvalidParameterException.class, () -> {
       parkingService.performCommands("CAR", params);
     });
@@ -101,7 +101,7 @@ public class ParkingServiceTests {
   @Test
   public void testValidCustomerCommand() throws Exception {
     ParkingService parkingService = new ParkingService(parkingOffice);
-    String[] params = { "name=Jimmy", "address=123 Main St", "phone=1234567890" };
+    String[] params = {"name=Jimmy", "address=123 Main St", "phone=1234567890"};
     String result = parkingService.performCommands("CUSTOMER", params);
     assertEquals("TestID", result);
   }
@@ -110,7 +110,7 @@ public class ParkingServiceTests {
   public void testInvalidCustomerCommand() throws Exception {
     ParkingService parkingService = new ParkingService(parkingOffice);
     String[] params = {
-        "address=123 Main St", "phone=1234567890" };
+        "address=123 Main St", "phone=1234567890"};
     assertThrows(InvalidParameterException.class, () -> {
       parkingService.performCommands("CAR", params);
     });

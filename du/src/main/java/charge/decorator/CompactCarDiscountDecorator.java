@@ -1,4 +1,4 @@
-package chargestrategy.decorator;
+package charge.decorator;
 
 /**
  * This class is responsible for compact car discounts within
@@ -20,7 +20,7 @@ public class CompactCarDiscountDecorator extends ParkingChargeCalculatorDecorato
   public CompactCarDiscountDecorator(ParkingChargeCalculator parkingChargeCalculator) {
     super(parkingChargeCalculator);
   }
-  
+
   @Override
   public Money getParkingCharge(ParkingPermit permit, ParkingLot parkingLot, OffsetDateTime entryTime, OffsetDateTime exitTime) {
     Money rate = super.getParkingCharge(permit, parkingLot, entryTime, exitTime);

@@ -1,7 +1,7 @@
-package chargestrategy.decorator;
+package charge.decorator;
 
 /**
- * Tests for CompactCarDiscountDecorator.java
+ * Tests for FlatRateCalculator.java
  *
  * @author Erik Grafton
  * @version 1.0
@@ -16,21 +16,21 @@ import java.time.OffsetDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CompactCarDiscountDecoratorTest {
+class FlatRateCalculatorTest {
 
   @Test
   void getParkingCharge() {
-    ParkingLot parkingLot = new ParkingLot("Lot A", "123 Main St.", 0, 100, ScanType.ENTRY, null);
+    ParkingLot parkingLot = new ParkingLot("Lot A", "123 Main St.", 0, 1, ScanType.ENTRY, null);
 
     Customer customer = new Customer("abcd", "Jimmy", "123 Main St.", "1234567890");
-    Car car = new Car("testPermit", LocalDate.now(), "testLicense", CarType.COMPACT, customer);
+    Car car = new Car("testPermit", LocalDate.now(), "testLicense", CarType.SUV, customer);
     LocalDate time = LocalDate.now();
     OffsetDateTime offsetTime = OffsetDateTime.now();
 
     ParkingPermit permit = new ParkingPermit("testLicense", car, time);
 
-    Money charge = new CompactCarDiscountDecorator(new FlatRateCalculator()).getParkingCharge(permit, parkingLot, offsetTime, offsetTime);
+    Money charge = new FlatRateCalculator().getParkingCharge(permit, parkingLot, offsetTime, offsetTime);
 
-    assertEquals(80, charge.getCents());
+    assertEquals(1, charge.getCents());
   }
 }

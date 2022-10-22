@@ -1,6 +1,6 @@
 package parkingsystem;
 
-import chargestrategy.ParkingChargeStrategy;
+import charge.strategy.ParkingChargeStrategy;
 
 import java.time.Instant;
 import java.time.OffsetDateTime;
